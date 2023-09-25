@@ -211,6 +211,70 @@ public isolated client class LibraryManagementSystemClient {
     }
 }
 
+public client class LibraryManagementSystemAddBookCaller {
+    private grpc:Caller caller;
+
+    public isolated function init(grpc:Caller caller) {
+        self.caller = caller;
+    }
+
+    public isolated function getId() returns int {
+        return self.caller.getId();
+    }
+
+    isolated remote function sendAddBook(AddBook response) returns grpc:Error? {
+        return self.caller->send(response);
+    }
+
+    isolated remote function sendContextAddBook(ContextAddBook response) returns grpc:Error? {
+        return self.caller->send(response);
+    }
+
+    isolated remote function sendError(grpc:Error response) returns grpc:Error? {
+        return self.caller->sendError(response);
+    }
+
+    isolated remote function complete() returns grpc:Error? {
+        return self.caller->complete();
+    }
+
+    public isolated function isCancelled() returns boolean {
+        return self.caller.isCancelled();
+    }
+}
+
+public client class LibraryManagementSystemStringCaller {
+    private grpc:Caller caller;
+
+    public isolated function init(grpc:Caller caller) {
+        self.caller = caller;
+    }
+
+    public isolated function getId() returns int {
+        return self.caller.getId();
+    }
+
+    isolated remote function sendString(string response) returns grpc:Error? {
+        return self.caller->send(response);
+    }
+
+    isolated remote function sendContextString(wrappers:ContextString response) returns grpc:Error? {
+        return self.caller->send(response);
+    }
+
+    isolated remote function sendError(grpc:Error response) returns grpc:Error? {
+        return self.caller->sendError(response);
+    }
+
+    isolated remote function complete() returns grpc:Error? {
+        return self.caller->complete();
+    }
+
+    public isolated function isCancelled() returns boolean {
+        return self.caller.isCancelled();
+    }
+}
+
 public type ContextAddBook record {|
     AddBook content;
     map<string|string[]> headers;
