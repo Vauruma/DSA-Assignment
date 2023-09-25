@@ -1,0 +1,62 @@
+syntax = "proto3";
+package LibraryManagementSystempackage;
+import "google/protobuf/wrappers.proto";
+//import "google/protobuf/empty.proto";
+
+
+service LibraryManagementSystem{
+    rpc addbook(AddBook) returns (AddBook);
+    rpc user(User) returns (google.protobuf.StringValue);
+    rpc update_book(Update_Book) returns (google.protobuf.StringValue);
+    rpc removebook(RemoveBook) returns (google.protobuf.StringValue);
+    rpc listofavailablebooks(ListOfAvailableBooks) returns (google.protobuf.StringValue);
+    rpc locate_book(Locate_Book) returns (google.protobuf.StringValue);
+    rpc borrowbook(BorrowBook) returns (google.protobuf.StringValue);
+}
+
+message AddBook{
+    string title = 1;
+    string author = 2;
+    int64 ISBN = 3;
+    string location = 4;
+    string availability = 5;
+}
+
+message User{
+    string userName = 1;
+    int64 id = 2;
+    int64 passcode = 3;
+}
+
+message Update_Book{
+    string title = 1;
+    string author = 2;
+    int64 ISBN = 3;
+    string location = 4;
+    string availability = 5;
+}
+
+message RemoveBook{
+    int64 ISBN = 1;
+}
+
+message ListOfAvailableBooks{
+    string title = 1;
+    string author = 2;
+    int64 ISBN = 3;
+    string location = 4;
+    string availability = 5;
+}
+
+message Locate_Book{
+    int64 ISBN = 1;
+    string loction = 2;
+}
+
+message BorrowBook{
+    int64 ISBN = 1;
+    string title = 2;
+    string location = 3;
+    int64 id = 4;
+}
+
